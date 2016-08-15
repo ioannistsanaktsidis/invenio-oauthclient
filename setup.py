@@ -58,13 +58,13 @@ extras_require = {
     ],
     'orcid': [],
     'mysql': [
-        'invenio-db[mysql]>=1.0.0a9',
+        'invenio-db[mysql]>=1.0.0b1',
     ],
     'postgresql': [
-        'invenio-db[postgresql]>=1.0.0a9',
+        'invenio-db[postgresql]>=1.0.0b1',
     ],
     'sqlite': [
-        'invenio-db>=1.0.0a9',
+        'invenio-db>=1.0.0b1',
     ],
     'tests': tests_require,
 }
