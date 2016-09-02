@@ -70,16 +70,16 @@ def base_app(request):
             github=GITHUB_REMOTE_APP,
         ),
         GITHUB_APP_CREDENTIALS=dict(
-            consumer_key='changeme',
-            consumer_secret='changeme',
+            consumer_key='github_key_changeme',
+            consumer_secret='github_secret_changeme',
         ),
         ORCID_APP_CREDENTIALS=dict(
-            consumer_key='changeme',
-            consumer_secret='changeme',
+            consumer_key='orcid_key_changeme',
+            consumer_secret='orcid_secret_changeme',
         ),
         CERN_APP_CREDENTIALS=dict(
-            consumer_key='changeme',
-            consumer_secret='changeme',
+            consumer_key='cern_key_changeme',
+            consumer_secret='cern_secret_changeme',
         ),
         # use local memory mailbox
         EMAIL_BACKEND='flask_email.backends.locmem.Mail',
