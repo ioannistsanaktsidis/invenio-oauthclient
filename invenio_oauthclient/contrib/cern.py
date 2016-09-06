@@ -87,10 +87,10 @@ import copy
 import re
 from datetime import datetime, timedelta
 
-from flask import after_this_request, current_app, g, redirect, session, \
+from flask import current_app, g, redirect, session, \
     url_for
 from flask_principal import AnonymousIdentity, RoleNeed, UserNeed, \
-    identity_changed
+    identity_changed, identity_loaded
 from flask_security import current_user
 from invenio_db import db
 
@@ -223,6 +223,7 @@ def extend_identity(identity, groups):
     identity.provides |= set([
         RoleNeed('{0}@cern.ch'.format(name)) for name in groups
     ])
+    session['identity.provides'] = identity.provides
 
 
 def get_dict_from_response(response):
@@ -329,3 +330,9 @@ def on_identity_changed(sender, identity):
                                          OAUTHCLIENT_CERN_REFRESH_TIMEDELTA)
         groups = account_groups(account, resource, refresh_timedelta=refresh)
         extend_identity(identity, groups)
+
+
+@identity_loaded.connect
+def on_identity_loaded(sender, identity):
+    """Store groups in session whenever identity is loaded."""
+    identity.provides.update(session.get('identity.provides', []))
